@@ -38,6 +38,7 @@ public class LoadHistoryServlet extends HttpServlet{
                 req.setAttribute("LISTQUIZ", listQuiz);
             }
         }catch(Exception ex){
+            ex.printStackTrace();
             log(ex.getMessage());
         }
         finally{

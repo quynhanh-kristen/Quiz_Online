@@ -158,7 +158,7 @@ public class QuestionBLO implements Serializable {
         try{
             String sqlString = "select * from (select ROW_NUMBER() over (order by NEWID())  as row, * "
                                     + "from tblQuestion where [ptQuestionStatus] = 1 and [qtSubjectId] = ? )as x\n" +
-                                        "where row between 1 and 10";
+                                        "where row between 1 and 20";
             em.getTransaction().begin();
             Query query = em.createNativeQuery(sqlString, TblQuestion.class);
             query.setParameter(1, idSubject);

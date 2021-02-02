@@ -53,12 +53,12 @@ public class LoadQuizServlet extends HttpServlet {
                 List<TblQuestion> list = new QuestionBLO().loadQuestion(Integer.parseInt(subId));
                 if (!list.isEmpty()) {
                     session.setAttribute("LIST_QUIZ", list);
-                    session.setMaxInactiveInterval(60 * 3);
+                    session.setMaxInactiveInterval(60 * 40);
 
                     Map<TblUserDAO, List<TblQuestion>> userQuiz = new HashMap<>();
                     userQuiz.put((TblUserDAO) session.getAttribute("USER"), list);
                     session.setAttribute("USER_QUIZ", userQuiz);
-                    session.setMaxInactiveInterval(60 * 3);
+                    session.setMaxInactiveInterval(60 * 40);
 
                 }
             }

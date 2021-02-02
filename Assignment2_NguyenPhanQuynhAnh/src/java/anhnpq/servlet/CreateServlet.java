@@ -29,7 +29,7 @@ import java.text.SimpleDateFormat;
 @WebServlet(name = "CreateServlet", urlPatterns = {"/CreateServlet"})
 public class CreateServlet extends HttpServlet {
 
-    private final SimpleDateFormat FORMAT = new SimpleDateFormat("dd/mm/yyyy");
+    private final SimpleDateFormat FORMAT = new SimpleDateFormat("dd/MM/yyyy");
 
     private final String CREATE_PAGE = "createpage";
 

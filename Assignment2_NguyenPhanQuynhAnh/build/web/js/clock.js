@@ -30,7 +30,7 @@ function startTimer(duration, display) {
             // example 05:00 not 04:59
             display.textContent = "TIME UP !!!";
             sessionStorage.clear();
-            document.getElementById("btAction").click();
+            setTimeout(submitTest(), 7000);
         }
         
     }
@@ -44,6 +44,10 @@ window.onload = function () {
     var fiveMinutes = sessionStorage.getItem("currentTime"),
             display = document.querySelector('.number');    
     if(fiveMinutes === null || fiveMinutes == 0)
-        fiveMinutes = 60 * 1;
+        fiveMinutes = 60 * 30;
     startTimer(fiveMinutes, display);   
 };
+
+function submitTest(){
+    document.getElementById("btAction").click();
+}

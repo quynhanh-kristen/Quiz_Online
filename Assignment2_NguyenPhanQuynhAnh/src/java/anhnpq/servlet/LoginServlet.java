@@ -48,7 +48,7 @@ public class LoginServlet extends HttpServlet {
                 if (session != null) {
                     TblUserDAO user = blo.returnNameAndRole(userId, password);
                     session.setAttribute("USER", user);
-                    session.setMaxInactiveInterval(60 * 3);
+                    session.setMaxInactiveInterval(60 * 40);
 
                     role = user.getUrRoleID().getRlRoleName();
                 }

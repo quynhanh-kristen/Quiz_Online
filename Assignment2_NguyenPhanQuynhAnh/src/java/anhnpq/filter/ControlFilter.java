@@ -100,10 +100,10 @@ public class ControlFilter implements Filter {
             }
 
         } catch(IOException | ServletException | IllegalStateException ex) {
-            RequestDispatcher rd = request.getRequestDispatcher("");
+            RequestDispatcher rd = request.getRequestDispatcher("error");
             rd.forward(request, response);
         }catch(Exception ex){
-            RequestDispatcher rd = request.getRequestDispatcher("");
+            RequestDispatcher rd = request.getRequestDispatcher("error");
             rd.forward(request, response);
         }
 

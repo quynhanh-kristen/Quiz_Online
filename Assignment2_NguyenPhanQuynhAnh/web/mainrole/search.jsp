@@ -29,7 +29,7 @@
                 margin-bottom: 1%;
                 margin-left: 5%;
                 font-size: 100%;
-                float: start;
+                position: relative;
             }
             .delete{
                 background-color: #dc2300; /* Green */
@@ -61,10 +61,19 @@
             padding: 6px 6px;
             color: #0480be;   
             font-size: 100%;
+            float: none;
+            margin-bottom: 10vh;
+            position: relative;
         }
          .page, .next, .prev:hover{
             background-color: #0480be;
             color: white;
+        }
+        .dropdown-menu, .dropdown-toggle{
+            font-size: 120%;
+        }
+        .dropdown{
+            margin-left: 5%;
         }
         </style>
     </head>
@@ -97,7 +106,7 @@
             <c:set var="listSubject" value="${applicationScope.SUBJECTS}" /> 
             <c:if test="${not empty listSubject}">
                 <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Software Engineering
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Subject
                         <span class="caret"></span></button>
                     <ul class="dropdown-menu">
                         <c:forEach items="${listSubject}" var="subs">
@@ -150,7 +159,7 @@
         <script>
             $('#easyPaginate').easyPaginate({
                 paginateElement: 'p',
-                elementsPerPage: 10,
+                elementsPerPage: 20,
                 effect: "climb"
             });
             
