@@ -11,6 +11,7 @@ import anhnpq.dao.TblCategory;
 import anhnpq.dao.TblSubject;
 import anhnpq.dao.TblUserDAO;
 import anhnpq.util.FileManager;
+import anhnpq.util.Logging;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
@@ -33,22 +34,26 @@ import javax.servlet.http.HttpSession;
  * @author DELL
  */
 public class ControlFilter implements Filter {
-
+    
     private ServletContext listControls;
+    private  String pathLog = "";
     List<String> adminPage = Arrays.asList("searchpage", "viewdetailpage", "createpage");
-
+    List<String> studentPage = Arrays.asList("historypage", "testpage", "quizpage");
+    
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         listControls = filterConfig.getServletContext();
         try {
             String path = listControls.getRealPath("/WEB-INF/controls.txt");
+            pathLog = listControls.getRealPath("/filter/log.txt");
+            
             Map<String, String> mapListControls = FileManager.getListControl(new File(path));
             if (!mapListControls.isEmpty()) {
                 listControls.setAttribute("CONTROLS", mapListControls);
             }
             SubjectBLO sblo = new SubjectBLO();
             
-             List<TblCategory> list = new CategoryBLO().returnListCategory();
+            List<TblCategory> list = new CategoryBLO().returnListCategory();
             List<TblSubject> listSubject = sblo.loadListOfSubjects();
             
             if (listSubject != null) {
@@ -59,23 +64,28 @@ public class ControlFilter implements Filter {
             listControls.log(ex.getMessage());
         }
     }
-
+    
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         System.out.println("IN  ControlFilter");
-
+        
+        HttpServletResponse resp = (HttpServletResponse) response;
+        Map<String, String> mapListControls = (Map<String, String>) listControls.getAttribute("CONTROLS");
+        String url = null;
+        String uri = null;
+        String msg = "";
         try {
             HttpServletRequest req = (HttpServletRequest) request;
-            String url = null;
-            String uri = req.getRequestURI();
+            
+            uri = req.getRequestURI();
             System.out.println("URI in ControlFilter: " + uri);
-
+            
             int lastIndex = uri.lastIndexOf("/");
             String target = uri.substring(lastIndex + 1);
             System.out.println("Target in control filter: " + target);
-
-            HttpSession session = req.getSession();
-
+            
+            HttpSession session = req.getSession(false);
+            
             if (session != null && adminPage.contains(target)) {
                 System.out.println("here");
                 TblUserDAO user = (TblUserDAO) session.getAttribute("USER");
@@ -84,34 +94,47 @@ public class ControlFilter implements Filter {
                     RequestDispatcher rd = request.getRequestDispatcher("");
                     rd.forward(request, response);
                 }
+            } else if (session != null && studentPage.contains(target)) {
+                TblUserDAO user = (TblUserDAO) session.getAttribute("USER");
+                if (user != null && user.getUrRoleID().getRlRoleName().equals("admin") || user == null) {
+                    System.out.println("Not permit to access");
+                    RequestDispatcher rd = request.getRequestDispatcher("");
+                    rd.forward(request, response);
+                }
             }
-            Map<String, String> mapListControls = (Map<String, String>) listControls.getAttribute("CONTROLS");
-
+            
             url = mapListControls.get(target);
             System.out.println("url: " + url);
             if (url != null) {
-                System.out.println("1");
                 RequestDispatcher rd = request.getRequestDispatcher(url);
                 rd.forward(request, response);
             } else {
-                                System.out.println("2");
-
                 chain.doFilter(request, response);
-            }
+            }    
 
-        } catch(IOException | ServletException | IllegalStateException ex) {
-            RequestDispatcher rd = request.getRequestDispatcher("error");
+        } catch (IOException | ServletException | IllegalStateException ex) {
+            listControls.log(ex.getMessage());
+            msg = msg + ex.getMessage();
+            
+            url = mapListControls.get("");
+            RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
-        }catch(Exception ex){
-            RequestDispatcher rd = request.getRequestDispatcher("error");
+        } catch (Exception ex) {   
+            listControls.log(ex.getMessage());
+            msg = msg + ex.getMessage();
+            
+            url = mapListControls.get("error");
+            RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
+        }finally{
+            Logging.writeLog(uri + "\n" + msg, new File(pathLog));
         }
-
+        
     }
-
+    
     @Override
     public void destroy() {
-
+        
     }
-
+    
 }
