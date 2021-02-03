@@ -38,6 +38,10 @@ import javax.xml.bind.annotation.XmlTransient;
 })
 public class TblUserDAO implements Serializable {
 
+    @OneToMany(mappedBy = "haUserGmail")
+    private Collection<TblHistoryAccess> tblHistoryAccessCollection;
+
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -148,5 +152,16 @@ public class TblUserDAO implements Serializable {
     public String toString() {
         return "anhnpq.util.TblUserDAO[ urUserGmail=" + urUserGmail + " ]";
     }
+
+    @XmlTransient
+    public Collection<TblHistoryAccess> getTblHistoryAccessCollection() {
+        return tblHistoryAccessCollection;
+    }
+
+    public void setTblHistoryAccessCollection(Collection<TblHistoryAccess> tblHistoryAccessCollection) {
+        this.tblHistoryAccessCollection = tblHistoryAccessCollection;
+    }
+
+
     
 }

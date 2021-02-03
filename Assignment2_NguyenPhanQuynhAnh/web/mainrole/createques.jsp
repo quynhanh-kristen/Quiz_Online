@@ -83,7 +83,7 @@
                     }
                 });
             });
-        </script>       
+        </script>           
         <a href="search">Back</a>
         <!--submit alert not succeed-->
         <form id="testcreate" action="create" onsubmit="alertMessage()">

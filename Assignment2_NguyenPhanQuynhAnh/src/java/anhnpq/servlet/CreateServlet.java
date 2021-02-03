@@ -54,7 +54,7 @@ public class CreateServlet extends HttpServlet {
             String createDate = req.getParameter("txtDate");
             java.util.Date date = FORMAT.parse(createDate);
             java.sql.Date sqlDate = new Date(date.getTime());
-//            log(quesAns1 + "-" + quesConrrect + "-" + status + "-" +subjectName + "-" + userId);
+
             TblQuestion question = new TblQuestion();
             question.setQtQuestion(quesCtn);
             question.setQtQuestionAnswer1(quesAns1);
@@ -72,11 +72,12 @@ public class CreateServlet extends HttpServlet {
             boolean result = new QuestionBLO().addNewQuestion(question);
 
             req.setAttribute("MSG", result ? "New question was created" : "Can not create new question!!!");
+            
 
         } catch (ParseException ex) {
             log(ex.getMessage());
         }catch (Exception ex){
-            req.setAttribute("MSG", "Oop..Our system has some problem, forgive us for this inconvinience :<");
+            req.setAttribute("MSG", "Oops..Our system has some problem, forgive us for this inconvinience :<");
             log(ex.getMessage());
         } 
         finally {

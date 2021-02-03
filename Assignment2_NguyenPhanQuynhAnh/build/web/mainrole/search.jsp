@@ -84,7 +84,7 @@
                 WELLCOME, ${admin.urUserName}<br>
                 <a href="signout"><i class="fas fa-sign-out-alt fa-1x">Signout</i></a>
             </c:if><br>
-            <a href="createpage"><i class="fas fa-plus-circle"></i>More questions</a>
+            <a href="${searchValues}"><i class="fas fa-plus-circle"></i>More questions</a>
         </div>
         <!----------------------------------------------------------------------------------------------------------------->              
 

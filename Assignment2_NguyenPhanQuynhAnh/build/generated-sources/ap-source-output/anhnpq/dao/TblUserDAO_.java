@@ -1,5 +1,6 @@
 package anhnpq.dao;
 
+import anhnpq.dao.TblHistoryAccess;
 import anhnpq.dao.TblQuestion;
 import anhnpq.dao.TblQuizResult;
 import anhnpq.dao.TblRole;
@@ -8,7 +9,7 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-02-02T18:36:52")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-02-03T20:40:27")
 @StaticMetamodel(TblUserDAO.class)
 public class TblUserDAO_ { 
 
@@ -16,6 +17,7 @@ public class TblUserDAO_ {
     public static volatile SingularAttribute<TblUserDAO, String> urUserGmail;
     public static volatile SingularAttribute<TblUserDAO, String> urPassword;
     public static volatile CollectionAttribute<TblUserDAO, TblQuizResult> tblQuizResultCollection;
+    public static volatile CollectionAttribute<TblUserDAO, TblHistoryAccess> tblHistoryAccessCollection;
     public static volatile SingularAttribute<TblUserDAO, String> urUserName;
     public static volatile CollectionAttribute<TblUserDAO, TblQuestion> tblQuestionCollection;
 

@@ -11,7 +11,6 @@ import anhnpq.dao.TblCategory;
 import anhnpq.dao.TblSubject;
 import anhnpq.dao.TblUserDAO;
 import anhnpq.util.FileManager;
-import anhnpq.util.Logging;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
@@ -36,7 +35,6 @@ import javax.servlet.http.HttpSession;
 public class ControlFilter implements Filter {
     
     private ServletContext listControls;
-    private  String pathLog = "";
     List<String> adminPage = Arrays.asList("searchpage", "viewdetailpage", "createpage");
     List<String> studentPage = Arrays.asList("historypage", "testpage", "quizpage");
     
@@ -45,7 +43,6 @@ public class ControlFilter implements Filter {
         listControls = filterConfig.getServletContext();
         try {
             String path = listControls.getRealPath("/WEB-INF/controls.txt");
-            pathLog = listControls.getRealPath("/filter/log.txt");
             
             Map<String, String> mapListControls = FileManager.getListControl(new File(path));
             if (!mapListControls.isEmpty()) {
@@ -127,7 +124,7 @@ public class ControlFilter implements Filter {
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
         }finally{
-            Logging.writeLog(uri + "\n" + msg, new File(pathLog));
+            
         }
         
     }
