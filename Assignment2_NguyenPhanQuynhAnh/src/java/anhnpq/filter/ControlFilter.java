@@ -84,7 +84,6 @@ public class ControlFilter implements Filter {
             HttpSession session = req.getSession(false);
             
             if (session != null && adminPage.contains(target)) {
-                System.out.println("here");
                 TblUserDAO user = (TblUserDAO) session.getAttribute("USER");
                 if (user != null && !user.getUrRoleID().getRlRoleName().equals("admin") || user == null) {
                     System.out.println("Not permit to access");

@@ -62,9 +62,6 @@ public class QuestionBLO implements Serializable {
             TblSubject sub = new SubjectBLO().returnSubject(id);
             sm.setParameter("qtSubjectId", sub);
             list = sm.getResultList();
-            for (TblQuestion tblQuestion : list) {
-                System.out.println(tblQuestion.getQtQuestionAnswer1());
-            }
             em.getTransaction().commit();
         } finally {
             em.close();
@@ -97,7 +94,6 @@ public class QuestionBLO implements Serializable {
             sm.setParameter("qtQuestionId", id);
             question = (TblQuestion) sm.getSingleResult();
             em.getTransaction().commit();
-            System.out.println("ques1: " + question.getQtQuestionAnswer1());
         }finally{
             em.close();
         }

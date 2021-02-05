@@ -46,8 +46,8 @@ public class QuizQuestionBLO implements Serializable{
             em.getTransaction().begin();
             list.forEach((q) -> {
                 em.persist(q);
+                em.flush();
             });
-            em.flush();
             em.getTransaction().commit();
             check = true;
         }finally{

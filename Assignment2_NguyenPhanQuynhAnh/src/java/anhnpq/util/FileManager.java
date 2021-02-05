@@ -30,7 +30,6 @@ public class FileManager {
                 String[] listControls = bd.readLine().split("=");
                 if(listControls.length == 2){
                     mapListControls.put(listControls[0], listControls[1]);
-                    System.out.println("key: " + listControls[0] + "- value: " + listControls[1]);
                 }
             }
         }finally{

@@ -30,7 +30,7 @@ function startTimer(duration, display) {
             // example 05:00 not 04:59
             display.textContent = "TIME UP !!!";
             sessionStorage.clear();
-            setTimeout(submitTest(), 7000);
+            setTimeout(submitTest(), 1000*7);
         }
         
     }

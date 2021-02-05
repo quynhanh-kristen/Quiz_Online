@@ -52,29 +52,29 @@
                 text-decoration: none;
                 color: #4fbe55;
             }
-          .page, .next, .prev{
-            border: 2px solid #0480be;
-            border-radius: 4px;
-            margin-left: 2vw;                 
-            text-decoration: none;
-            background-color: white;
-            padding: 6px 6px;
-            color: #0480be;   
-            font-size: 100%;
-            float: none;
-            margin-bottom: 10vh;
-            position: relative;
-        }
-         .page, .next, .prev:hover{
-            background-color: #0480be;
-            color: white;
-        }
-        .dropdown-menu, .dropdown-toggle{
-            font-size: 120%;
-        }
-        .dropdown{
-            margin-left: 5%;
-        }
+            .page, .next, .prev{
+                border: 2px solid #0480be;
+                border-radius: 4px;
+                margin-left: 2vw;                 
+                text-decoration: none;
+                background-color: white;
+                padding: 6px 6px;
+                color: #0480be;   
+                font-size: 100%;
+                float: none;
+                margin-bottom: 10vh;
+                position: relative;
+            }
+            .page, .next, .prev:hover{
+                background-color: #0480be;
+                color: white;
+            }
+            .dropdown-menu, .dropdown-toggle{
+                font-size: 120%;
+            }
+            .dropdown{
+                margin-left: 5%;
+            }
         </style>
     </head>
     <body style="font-size: 200%">
@@ -94,7 +94,7 @@
                 <h1>QUESTION BANK</h1>
                 <div>
                     <input type="checkbox" name="ckbStatus"   value="ON"
-                           <c:if test="${requestScope.ckbStatus == true}">
+                           <c:if test="${not empty param.ckbStatus}">
                                checked="checked"
                            </c:if>
                            />Status
@@ -122,7 +122,7 @@
                 </div>
             </c:if>
         </form>
-        <!----------------------------------------------------------------------------------------------------------------->              
+        <!------------------------------------------Show question----------------------------------------------------------------------->              
     <center>
         <form action="viewdetail" class="data-form">
             <c:set var="listQuestion" value="${requestScope.LISTQUESTONS}"/>
@@ -131,19 +131,20 @@
                     <c:forEach begin="0" end="${listQuestion.size() - 1}" var="i" >
                         <p>
                             <c:url var="urlRewriting" value="viewdetail">
-                                <c:param name="lastSearchText" value="${txtSearch}"/>
-                                <c:param name="ckbStatus" value="${ckbStatus}"/>
-                                <c:param name="qtQuestionId" value="${listQuestion.get(i).qtQuestionId}"/>                                               
+                                <c:param name="ckbStatus" value="${param.ckbStatus}"/>
+                                <c:param name="qtQuestionId" value="${listQuestion.get(i).qtQuestionId}"/>           
+                                <c:param name="txtSearch" value="${param.txtSearch}"/>
+                                <c:param name="subjectId" value="${param.subjectID}"/>
                             </c:url>
                             <a href="${urlRewriting}">${listQuestion.get(i).qtQuestion}</a><br/>
-                            <!----------------------------------------------------------------------------------------------------------------->              
+                            <!-----------------------------------------------------Delete------------------------------------------------------------>              
 
-                            <c:if test="${listQuestion.get(i).ptQuestionStatus == true}">                            
+                            <c:if test="${listQuestion.get(i).ptQuestionStatus}">                            
                                 <c:url var="urlRewriting" value="delete">
                                     <c:param name="txtQuesId" value="${listQuestion.get(i).qtQuestionId}"/>
-                                    <c:param name="txtSearch" value="${txtSearch}"/>
-                                    <c:param name="ckbStatus" value="${ckbStatus}"/>
-                                    <c:param name="subjectID" value="${listQuestion.get(i).qtSubjectId.sjSubjectId}"/>
+                                    <c:param name="ckbStatus" value="${param.ckbStatus}"/>
+                                    <c:param name="subjectID" value="${param.subjectID}"/>
+                                    <c:param name="txtSearch" value="${param.txtSearch}"/>
                                 </c:url>
                                 <a href="${urlRewriting}" class="delete" onclick="">Delete</a>
                             </c:if>    
@@ -151,18 +152,18 @@
                     </c:forEach>
                 </div>      
             </c:if>
-            <c:if test="${empty listQuestion}">
+            <c:if test="${ not empty requestScope.MSG}">
                 <center>No result</center>
-                </c:if>          
+            </c:if>          
         </form>
     </center>
-        <script>
-            $('#easyPaginate').easyPaginate({
-                paginateElement: 'p',
-                elementsPerPage: 20,
-                effect: "climb"
-            });
-            
-        </script>
-    </body>
+    <script>
+        $('#easyPaginate').easyPaginate({
+            paginateElement: 'p',
+            elementsPerPage: 20,
+            effect: "climb"
+        });
+
+    </script>
+</body>
 </html>

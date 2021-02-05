@@ -15,6 +15,18 @@
         <script src="https://kit.fontawesome.com/d2a5d5d384.js" crossorigin="anonymous"></script>
         <link href="css/simplepagination.css" rel = "stylesheet" type ="text/css">
     </head>
+    <style>
+        #pagination{
+            margin-bottom: 5vh;
+            margin-top: 5vh;
+        }
+        table{
+            font-size: 150%;
+        }
+        a{
+            text-decoration: none;
+        }
+    </style>
     <body>
 
         <c:set var="history" value="${requestScope.HISTORYQUIZ}"/>
@@ -90,6 +102,7 @@
                     </c:forEach>     
                 </tbody>
             </table>
+            
         </c:if>
         <c:if test="${empty quizList}">
             No result

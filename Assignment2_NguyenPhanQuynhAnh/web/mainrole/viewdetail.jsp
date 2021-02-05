@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Quiz Online</title>
         <style>
             body{
                 font-size: 150%;
@@ -80,8 +80,13 @@
                     }
                 });
             });
-        </script>       
-        <a href="search">Back</a>
+        </script>     
+        <c:url var="transferValues" value="search">
+            <c:param name="txtSearch" value="${requestScope.txtSearch}"/>
+            <c:param name="subjectID" value = "${requestScope.subjectId}"/>
+            <c:param name="ckbStatus" value = "${requestScope.ckbStatus}"/>
+        </c:url>
+        <a href="${transferValues}">Back</a>
         <c:set var="ques" value="${requestScope.QUESTION}"/>
         <c:if test="${not empty ques}">
             <!--submit alert not succeed-->
@@ -103,7 +108,6 @@
                 </select>
 
                 <center>
-
                     <h1>Quizz online</h1>
                     <h3><div id="namesubs">${ques.qtSubjectId.sjSubjectName}</div></h3>
                     <input type="hidden" name="txtSubName" value="${ques.qtSubjectId.sjSubjectName}" id="idsub" />
@@ -191,6 +195,9 @@
                 </center>           
                 <input type="hidden" name="qtQuestionId" value="${ques.qtQuestionId}" />
                 <input type="hidden" name="txtSubId" value="${ques.qtSubjectId.sjSubjectId}" />
+                <input type="hidden" name="txtSearch" value="${requestScope.txtSearch}" />
+                <input type="hidden" name="oldSubjectId" value ="${requestScope.subjectId}"/>
+                <inpurt type="hidden" name="ckbStatus" value="${requestScope.ckbStatus}"/>
             </form>
         </c:if>  
 

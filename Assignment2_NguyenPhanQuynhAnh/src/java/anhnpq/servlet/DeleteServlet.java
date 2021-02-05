@@ -23,7 +23,6 @@ import javax.servlet.http.HttpServletResponse;
 public class DeleteServlet extends HttpServlet {
 
     private final String SEARCH_PROCESS = "search";
-//    private final String SEARCH_PROCESS = "search";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -34,14 +33,17 @@ public class DeleteServlet extends HttpServlet {
             String questId = req.getParameter("txtQuesId");
             String quesStatus = req.getParameter("txtStatus");
             String subjectId = req.getParameter("subjectID");
+            String searchStatus = req.getParameter("ckbStatus");
 
             boolean status = quesStatus != null;
+
             if(questId != null){
                 QuestionBLO blo = new QuestionBLO();
                 blo.updateStatusQuestion(Integer.parseInt(questId), status);
             }          
                 req.setAttribute("txtSearch", lastSearch);
                 req.setAttribute("subjectID", subjectId);
+                req.setAttribute("ckbStatus", searchStatus);//
                     
         } finally {
             RequestDispatcher rd = req.getRequestDispatcher(SEARCH_PROCESS);

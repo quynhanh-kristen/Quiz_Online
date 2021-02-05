@@ -30,18 +30,24 @@ public class ViewDetailServlet extends HttpServlet {
         String url = VIEW_DETAIL_PAGE;
         try {
             String idQuestion = req.getParameter("qtQuestionId");
-            String lastSearch = req.getParameter("lastSearchText");
-            String status = req.getParameter("ckbStatus");
+            String lastSearch = req.getParameter("txtSearch");
+            String subjectId = req.getParameter("subjectId");
+            String subStatus = req.getParameter("ckbStatus");
+            System.out.println("substatus: " + subStatus);
+            
             QuestionBLO blo = new QuestionBLO();
             if (idQuestion != null) {
                 TblQuestion question = blo.getQuestion(Integer.parseInt(idQuestion));
-                System.out.println("ques1 in servlet: " + question.getQtQuestionAnswer1());
                 req.setAttribute("QUESTION", question);
             }
             if(lastSearch != null){
                 req.setAttribute("txtSearch", lastSearch);
             }
-            req.setAttribute("ckbStatus", status);
+            if(subjectId != null){
+                req.setAttribute("subjectId", subjectId);
+            }
+            req.setAttribute("ckbStatus", subStatus);
+            
         } finally {
             RequestDispatcher rd = req.getRequestDispatcher(url);
             rd.forward(req, resp);

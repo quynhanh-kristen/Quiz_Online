@@ -35,25 +35,31 @@ public class SearchServlet extends HttpServlet {
             String text = req.getParameter("txtSearch");
             String subjectId = req.getParameter("subjectID");
             String check = req.getParameter("ckbStatus");
-            System.out.println("check box: " + check);
-            
-            boolean status = (check != null);
-            System.out.println("STATUS IN SEARCH: "  + status);
+
+            boolean status = (check != null && !check.equals(""));
 
             QuestionBLO blo = new QuestionBLO();
             List<TblQuestion> listQuestion = null;
 
             if (text != null && !text.equals("")) {
-                System.out.println("text: " + text);
+                System.out.println("1");
                 listQuestion = blo.getQuestionByName(text.trim());
-            } else if (subjectId != null) {
-                System.out.println("id 1");
+            } else if (subjectId != null && !subjectId.equals("")) {
+                System.out.println("2");
                 listQuestion = blo.getQuestionSubjectID(Integer.parseInt(subjectId));
             } else {
+                System.out.println("3");
+                System.out.println("check: " + check);
                 listQuestion = blo.getQuestionByStatus(status);
             }
+
             req.setAttribute("LISTQUESTONS", listQuestion);
-            req.setAttribute("ckbStatus", status);
+            req.setAttribute("ckbStatus", check);
+            req.setAttribute("subjectId", subjectId);
+
+            if (listQuestion.isEmpty()) {
+                req.setAttribute("MSG", "No result");
+            }
         } finally {
             RequestDispatcher rd = req.getRequestDispatcher(SEARCH_PAGE);
             rd.forward(req, resp);
