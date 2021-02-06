@@ -36,7 +36,7 @@ public class ControlFilter implements Filter {
     
     private ServletContext listControls;
     List<String> adminPage = Arrays.asList("searchpage", "viewdetailpage", "createpage");
-    List<String> studentPage = Arrays.asList("historypage", "testpage", "quizpage");
+    List<String> studentPage = Arrays.asList("historypage", "testpage", "quizpage", "viewdetaihistorypage");
     
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
