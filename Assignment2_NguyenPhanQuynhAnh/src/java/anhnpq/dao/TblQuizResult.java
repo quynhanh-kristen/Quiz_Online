@@ -38,7 +38,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "TblQuizResult.findAll", query = "SELECT t FROM TblQuizResult t")
     , @NamedQuery(name = "TblQuizResult.findQuizbyUserId", query = "select t from TblQuizResult t where t.qrUserGmail = :id"),
 @NamedQuery(name = "TblQuizResult.findQuizbySubjectName", query = "select t from TblQuizResult t join TblSubject s where s.sjSubjectName like :name"),
-@NamedQuery(name = "TblQuizResult.findQuizbyCtg", query = "select t from TblQuizResult t join TblSubject s join TblCategory c where c.ctgCategoryId = :id")
+@NamedQuery(name = "TblQuizResult.findQuizbyCtg", query = "select t from TblQuizResult t join TblSubject s join TblCategory c where c.ctgCategoryId = :id"),
+@NamedQuery(name = "TblQuizResult.findQuizbyId", query = "select t from TblQuizResult t where t.qrQuizResultId = :id")
 })
 public class TblQuizResult implements Serializable {
 

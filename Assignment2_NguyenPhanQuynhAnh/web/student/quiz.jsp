@@ -26,6 +26,8 @@
             margin-left: 5%;
             background-color: #4fbe55;
             color: white;
+            border-radius: 50%;
+            font-size: 120%;
         }
         .subject:hover{
             background-color: chartreuse;
@@ -48,7 +50,7 @@
         </div>
 
     <center>
-        <h1>QUIZZ TIME, CHOOSE A SUBJECT </h1>
+        <h1>CHOOSE A SUBJECT TO START THE QUIZ </h1>
         <c:set var="listSubs" value="${applicationScope.SUBJECTS}"/>
         <div>
             <c:forEach items="${listSubs}" var="sub">

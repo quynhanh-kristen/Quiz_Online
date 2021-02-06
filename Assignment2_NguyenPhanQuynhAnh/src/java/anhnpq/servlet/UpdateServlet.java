@@ -62,7 +62,7 @@ public class UpdateServlet extends HttpServlet {
             req.setAttribute("txtSearch", txtSearch);
             req.setAttribute("subjectId", oldSubjectId);
             req.setAttribute("ckbStatus", oldStatus);
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             log(e.getMessage());
             req.setAttribute("MSG", "OOps...There are something with our system. Please, try again");
         } finally {

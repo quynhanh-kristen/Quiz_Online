@@ -14,10 +14,24 @@
         <title>Home Page</title>
         <link  rel="icon" type="image/png" href="images/icon.png" sizes="16x16"/>    
         <style>
-            input[type="email"], input[type="password"]{
-                font-size: 80%;
-                width: auto;
-                text-height: font-size;
+             body{
+                margin-top: 15vh;
+            }
+            h1{
+                margin-left: 5%;
+            }
+            table{
+                width: 40vw;
+                text-align:  initial;
+                margin-left: 10%;
+            }
+            input[type ="email"], input[type ="password"]{
+                font-size: 70%;
+                size: 15vw;
+                margin-bottom: 3vh;
+                margin-right: -100%;
+                padding: 10px;
+                width: 35vw;
             }
             input[type = "submit"]{
                 padding: 2% 9%;
@@ -34,13 +48,15 @@
                 background-color: #4fbe55;
             }
             a{
+               margin-left: -5%;
+                font-size: 150%;
                 text-decoration: none;
-            }
-            a:hover{
-                color: #3a87ad;
             }
             a, #loginBtn{
                 margin-top: 3%;
+            }
+            a:hover{
+                color: tomato;
             }
         </style>
     </head>
@@ -59,7 +75,7 @@
                     <tr>
                         <td></td>
                         <td>
-                            <input type="password" name="txtPassword" value="" size="35"  required="" placeholder="Password"/>
+                            <input id="password" type="password" name="txtPassword" value="" size="35"  required="" placeholder="Password"/>
                         </td>
                     </tr>
                     <tr>
@@ -68,7 +84,7 @@
                         </td>
                         <td>
                             <input type="submit" value="Login" name="btAction"  id="loginBtn"/>
-                            <a href="signuppage" id="signup">Sign up ?</a>
+                            <a href="signuppage" id="signup">Signup ?</a>
                         </td>
                     </tr>
                     <tr colspan="2">

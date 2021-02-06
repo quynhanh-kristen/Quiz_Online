@@ -46,6 +46,8 @@ public class QuizResultBLO implements Serializable {
             em.persist(result);
             em.getTransaction().commit();
             check = true;
+        }catch (Exception ex){
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, ex.getMessage());
         } finally {
             em.close();
         }
@@ -61,7 +63,9 @@ public class QuizResultBLO implements Serializable {
             sm.setParameter("id", user);
             list = sm.getResultList();
             em.getTransaction().commit();
-        } finally {
+        } catch (Exception ex){
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, ex.getMessage());
+        }finally {
             em.close();
         }
         return list;
@@ -82,7 +86,9 @@ public class QuizResultBLO implements Serializable {
             list = sm.getResultList();
             System.out.println("SIZE IN BLO: " + list.size());
             em.getTransaction().commit();
-        } finally {
+        } catch (Exception ex){
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, ex.getMessage());
+        }finally {
             em.close();
         }
         return list;
@@ -102,12 +108,30 @@ public class QuizResultBLO implements Serializable {
             sm.setParameter(1, idCtg);
             sm.setParameter(2, userId);
             list = sm.getResultList();
-            System.out.println("SIZE IN BLO: " + list.size());
             em.getTransaction().commit();
+        }catch (Exception ex){
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, ex.getMessage());
         } finally {
             em.close();
         }
         return list;
+    }
+    
+    public TblQuizResult getQuizResult(int id){
+        EntityManager em = emf.createEntityManager();
+        TblQuizResult result = null;
+        try{
+            em.getTransaction().begin();
+            Query sm = em.createNamedQuery("TblQuizResult.findQuizbyId", TblQuizResult.class);
+            sm.setParameter("id", id);
+            result = (TblQuizResult) sm.getSingleResult();
+            em.getTransaction().commit();
+        }catch (Exception ex){
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, ex.getMessage());
+        }finally{
+            em.close();
+        }
+        return result;
     }
 
 }

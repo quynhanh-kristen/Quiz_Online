@@ -5,7 +5,6 @@
  */
 package anhnpq.dao;
 
-import anhnpq.dao.TblUserDAO;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;

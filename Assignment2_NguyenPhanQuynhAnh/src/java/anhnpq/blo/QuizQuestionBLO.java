@@ -6,6 +6,7 @@
 package anhnpq.blo;
 
 import anhnpq.dao.TblQuizQuestion;
+import anhnpq.dao.TblQuizResult;
 import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
@@ -13,6 +14,7 @@ import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
@@ -50,10 +52,31 @@ public class QuizQuestionBLO implements Serializable{
             });
             em.getTransaction().commit();
             check = true;
-        }finally{
+        }catch (Exception ex){
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, ex.getMessage());
+        }
+        finally{
             em.close();
         }
         return check;    
+    }
+    
+    public List<TblQuizQuestion> getQuizQuestionDetail(int resultID){
+        EntityManager em = emf.createEntityManager();
+        List<TblQuizQuestion> list = null;
+        try{
+            em.getTransaction().begin();
+            Query sm = em.createNamedQuery("TblQuizQuestion.getQuizDetail", TblQuizQuestion.class);
+            TblQuizResult result = new QuizResultBLO().getQuizResult(resultID);
+            sm.setParameter("id", result);
+            list = sm.getResultList();
+            em.getTransaction().commit();
+        }catch (Exception ex){
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, ex.getMessage());
+        }finally{
+            em.close();
+        }
+        return list;
     }
     
 }

@@ -42,14 +42,10 @@ public class SearchServlet extends HttpServlet {
             List<TblQuestion> listQuestion = null;
 
             if (text != null && !text.equals("")) {
-                System.out.println("1");
                 listQuestion = blo.getQuestionByName(text.trim());
             } else if (subjectId != null && !subjectId.equals("")) {
-                System.out.println("2");
                 listQuestion = blo.getQuestionSubjectID(Integer.parseInt(subjectId));
             } else {
-                System.out.println("3");
-                System.out.println("check: " + check);
                 listQuestion = blo.getQuestionByStatus(status);
             }
 

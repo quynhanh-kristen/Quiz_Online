@@ -48,7 +48,9 @@ public class ViewDetailServlet extends HttpServlet {
             }
             req.setAttribute("ckbStatus", subStatus);
             
-        } finally {
+        } catch (NumberFormatException ex){
+            log(ex.getMessage());
+        }finally {
             RequestDispatcher rd = req.getRequestDispatcher(url);
             rd.forward(req, resp);
         }

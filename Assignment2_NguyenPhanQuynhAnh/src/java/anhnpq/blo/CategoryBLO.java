@@ -6,6 +6,7 @@
 package anhnpq.blo;
 
 import anhnpq.dao.TblCategory;
+import static com.sun.activation.registries.LogSupport.log;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,10 @@ public class CategoryBLO implements Serializable{
            Query sm = em.createNamedQuery("TblCategory.findAll", TblCategory.class);
            listCtg = sm.getResultList();
            em.getTransaction().commit();
-       }finally{
+       }catch (Exception ex){
+           log("CATEGORYBLO: " + ex.getMessage());
+       }
+       finally{
            em.close();
        }
        return listCtg;

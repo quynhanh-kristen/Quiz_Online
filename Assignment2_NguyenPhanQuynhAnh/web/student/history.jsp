@@ -47,7 +47,7 @@
             </li>
             <li id="search">
                 <form action="searchhistory">
-                    <input type="text" name="search_text" value="${param.search_text}" placeholder="Subject's name" id="search_text"/>
+                    <input type="text" name="search_text" value="${requestScope.search_text}" placeholder="Subject's name" id="search_text"/>
                     <input type="submit" value="Search" name="search_button" id="search_button"/>
                 </form>
             </li>
@@ -84,6 +84,7 @@
                         <tr>
                             <td>
                                 ${quiz.qrQuizResultSubject.sjSubjectName} 
+                                <input type="hidden" name="subName" value="${quiz.qrQuizResultSubject.sjSubjectName}" />
                             </td>
                             <td>
                                 ${quiz.qrQuizResultDate}
@@ -94,9 +95,17 @@
                             <td>
                                 <c:set var="pointPerQues" value="${10 / quiz.qrQuizResultQuesAmount}"/>
                                 ${pointPerQues * quiz.qrQuizResultCorrectAnsNum}
+                                <c:set var="point" value="${pointPerQues * quiz.qrQuizResultCorrectAnsNum}"/>
                             </td>
                             <td>
-                                <a href="#">View <i class="far fa-file-alt"></i></a>
+                                <c:url var="savedValues" value = "viewdetaihistory">
+                                    <c:param name="quizResultId" value="${quiz.qrQuizResultId}"/>
+                                    <c:param name="search_text" value ="${param.search_text}"/>
+                                    <c:param name="ctgId" value="${requestScope.ctgId}"/>       
+                                    <c:param name="subName" value="${quiz.qrQuizResultSubject.sjSubjectName} "/>
+                                    <c:param name="point" value="${point}"/>
+                                </c:url>
+                                <a href="${savedValues}">View <i class="far fa-file-alt"></i></a>
                             </td>
                         </tr>
                     </c:forEach>     

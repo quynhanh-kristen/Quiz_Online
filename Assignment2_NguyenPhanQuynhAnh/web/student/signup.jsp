@@ -12,77 +12,122 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Signup Page</title>
         <style>
+            body{
+                margin-top: 15vh;
+            }
+            h1{
+                margin-left: 5%;
+            }
+            table{
+                width: 40vw;
+                text-align:  initial;
+                margin-left: 10%;
+            }
             .error{
-                color: red;
-            }
-            input[type ="text"], input[type="password"]{
-                font-size: 75%;
-                size: 15vw;
-            }
-             input[type = "submit"]{
-                padding: 2% 9%;
+                color: red;    
                 font-size: 80%;
+                display: block;
+            }
+            input[type ="text"]{
+                font-size: 70%;
+                size: 15vw;
+                margin-bottom: 3vh;
+                margin-right: -100%;
+                padding: 10px;
+                width: 35vw;
+            }
+            #password{
+                font-size: 70%;
+                size: 15vw;
+                margin-bottom: 3vh;
+                margin-right: -100%;
+                padding: 10px;
+                width: 35vw;
+            }
+            #role{
+                margin-left: -650%;
+            }
+            input[type = "submit"]{
+                padding: 2% 9%;
+                font-size: 70%;
             }
             #saveBtn{
-                margin-right: 40%;
+                margin-right: 30%;
+                margin-top: 4vh;
                 background-color: #7aba7b;
             }
             #saveBtn:hover{
                 background-color: #4fbe55;
             }
+            a{
+                margin-left: -200%;
+                font-size: 150%;
+                text-decoration: none;
+            }
+            a:hover{
+                color: tomato;
+            }
+            @media (max-width: 1500px){
+                #role{
+                    margin-left: -250%;
+                }
+                a{
+                    margin-left: -100%;
+                }
+                h1{
+                    margin-left: 0;
+                }
+            }
         </style>
     </head>
-    <body style="font-size: 200%">
+    <body style="font-size: 160%">
         <script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
         <script type="text/javascript" src="js/jquery.validate.js"></script>
         <script type="text/javascript" src="js/additional-methods.js"></script>
         <script type="text/javascript">
-            $(function() {
+            $(function () {
                 $("#testsignup").validate({
                     rules: {
                         txtId: {
-                        required: true,
-                                email: true
+                            required: true,
+                            email: true
                         },
                         txtName: {
-                        required: true,
-                                rangelength: [6, 20]
+                            required: true,
+                            rangelength: [6, 20]
                         },
                         txtPass: {
-                        required: true,
-                        rangelength: [6, 20]
+                            required: true,
+                            minlength: 6
                         }
-                    }//end rules
-                });//end validate
+                    }//end rules           
+                });//end validate              
             }); //end function
         </script>
     <center>
         <h1>SIGN UP</h1>
         <form name="signupform" action="signup" method="POST" id="testsignup">
-            <table width="50" cellspacing="10" cellpadding="10">           
+            <table >           
                 <tbody>
                     <tr>
-                        <td>Email: </td>
                         <td>
-                            <input  type="text" name="txtId" value="" />
+                            <input  type="text" name="txtId" value=""  placeholder="Email"/><br/>
                         </td>
                     </tr>
                     <tr>
-                        <td>Name: </td>
                         <td>
-                            <input type="text" name="txtName" value="" />
+                            <input type="text" name="txtName" value="" placeholder="Name"/><br/>
                         </td>
                     </tr>
                     <tr>
-                        <td>Password: </td>
                         <td>
-                            <input type="password" name="txtPass" value="" id="testPassword" /><br/>
+                            <input id="password" type="password" name="txtPass" value="" id="testPassword" placeholder="Password"/><br/>
                         </td>
                     </tr>
                     <tr>
                         <td>Role: </td>
                         <td>
-                            <input type="radio" name="rbRole" value="Student" checked="checked" disabled="" />Student
+                            <input id="role" type="radio" name="rbRole" value="Student" checked="checked" disabled="" />Student
                         </td>
                     </tr>
                     <tr>
@@ -90,7 +135,7 @@
                             <input type="submit" value="Save" name="Save"  id="saveBtn"/>
                         </td>
                         <td>
-                            <a href="backfromsignup" >Back</a> 
+                            <a href="backfromsignup" >Login</a> 
                         </td>
                     </tr>
                 </tbody>

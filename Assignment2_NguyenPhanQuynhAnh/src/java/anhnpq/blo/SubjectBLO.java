@@ -53,6 +53,8 @@ public class SubjectBLO implements Serializable{
                 }
             }
             
+        }catch (Exception ex){
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, ex.getMessage());
         }finally{
             em.close();
         }
@@ -70,6 +72,8 @@ public class SubjectBLO implements Serializable{
             subject = (TblSubject) sm.getSingleResult();
             em.getTransaction().commit();           
             
+        }catch (Exception ex){
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, ex.getMessage());
         }finally{
             em.close();
         }
@@ -87,6 +91,8 @@ public class SubjectBLO implements Serializable{
             subject = (TblSubject) sm.getSingleResult();
             em.getTransaction().commit();           
             
+        }catch (Exception ex){
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, ex.getMessage());
         }finally{
             em.close();
         }

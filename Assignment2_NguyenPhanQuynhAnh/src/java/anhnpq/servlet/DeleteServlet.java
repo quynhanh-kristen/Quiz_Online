@@ -45,8 +45,10 @@ public class DeleteServlet extends HttpServlet {
                 req.setAttribute("subjectID", subjectId);
                 req.setAttribute("ckbStatus", searchStatus);//
                     
+        }catch (NumberFormatException ex){
+            log(ex.getMessage());
         } finally {
-            RequestDispatcher rd = req.getRequestDispatcher(SEARCH_PROCESS);
+            RequestDispatcher rd = req.getRequestDispatcher(url);
             rd.forward(req, resp);
         }
 

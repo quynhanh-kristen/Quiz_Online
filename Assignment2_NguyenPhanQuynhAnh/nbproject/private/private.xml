@@ -3,11 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Q:/Prj321/LAB/Quiz_Online/Assignment2_NguyenPhanQuynhAnh/web/signin.jsp</file>
-            <file>file:/Q:/Prj321/LAB/Quiz_Online/Assignment2_NguyenPhanQuynhAnh/src/java/anhnpq/servlet/LoginServlet.java</file>
-            <file>file:/Q:/Prj321/LAB/Quiz_Online/Assignment2_NguyenPhanQuynhAnh/web/WEB-INF/web.xml</file>
-            <file>file:/Q:/Prj321/LAB/Quiz_Online/Assignment2_NguyenPhanQuynhAnh/src/java/anhnpq/servlet/LoadQuizServlet.java</file>
-            <file>file:/Q:/Prj321/LAB/Quiz_Online/Assignment2_NguyenPhanQuynhAnh/web/mainrole/search.jsp</file>
+            <file>file:/Q:/Prj321/LAB/Quiz_Online/Assignment2_NguyenPhanQuynhAnh/src/java/anhnpq/dao/TblQuizResult.java</file>
+            <file>file:/Q:/Prj321/LAB/Quiz_Online/Assignment2_NguyenPhanQuynhAnh/web/student/history.jsp</file>
+            <file>file:/Q:/Prj321/LAB/Quiz_Online/Assignment2_NguyenPhanQuynhAnh/src/java/anhnpq/servlet/ViewDetailHistoryServlet.java</file>
+            <file>file:/Q:/Prj321/LAB/Quiz_Online/Assignment2_NguyenPhanQuynhAnh/src/java/anhnpq/dao/TblQuizQuestion.java</file>
+            <file>file:/Q:/Prj321/LAB/Quiz_Online/Assignment2_NguyenPhanQuynhAnh/web/student/viewdetailhistory.jsp</file>
         </group>
     </open-files>
 </project-private>

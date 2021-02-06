@@ -22,3 +22,5 @@ resultpage=student/result.jsp
 history=LoadHistoryServlet
 historypage=student/history.jsp
 searchhistory=SearchHistoryServlet
+viewdetaihistory=ViewDetailHistoryServlet
+viewdetaihistorypage=student/viewdetailhistory.jsp

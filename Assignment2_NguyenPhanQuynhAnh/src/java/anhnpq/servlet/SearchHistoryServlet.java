@@ -40,9 +40,10 @@ public class SearchHistoryServlet extends HttpServlet {
             String id = user.getUrUserGmail();
             if (searchText != null) {
                 listResult = new QuizResultBLO().getQuizByText(searchText, id);
+                req.setAttribute("search_text", searchText);
             } else if (idCtg != null) {
                 listResult = new QuizResultBLO().getQuizByCtg(Integer.parseInt(idCtg), id);
-                System.out.println("SIZE: " + listResult.size());
+                req.setAttribute("ctgId", idCtg);
             }
             req.setAttribute("LISTQUIZ", listResult);
         } catch (NumberFormatException ex) {

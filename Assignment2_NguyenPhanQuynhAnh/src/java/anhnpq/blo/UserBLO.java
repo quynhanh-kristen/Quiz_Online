@@ -36,10 +36,12 @@ public class UserBLO implements Serializable {
             sm.getSingleResult();
             em.getTransaction().commit();
             return true;
+        }catch (Exception ex){
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, ex.getMessage());
         } finally {
             em.close();
         }
-
+        return false;
     }
 
     public TblUserDAO returnNameAndRole(String userId, String password) throws NoResultException {
@@ -54,7 +56,9 @@ public class UserBLO implements Serializable {
             user =  (TblUserDAO) sm.getSingleResult();
             em.getTransaction().commit();       
             user = new TblUserDAO(user.getUrUserGmail(),user.getUrRoleID(), user.getUrUserName());
-        } finally {
+        } catch (Exception ex){
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, ex.getMessage());
+        }finally {
             em.close();
         }
         return user;
@@ -67,7 +71,9 @@ public class UserBLO implements Serializable {
             em.getTransaction().begin();
             em.persist(user);
             em.getTransaction().commit();            
-        } finally{
+        } catch (Exception ex){
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, ex.getMessage());
+        }finally{
             em.close();
         }
         return result;

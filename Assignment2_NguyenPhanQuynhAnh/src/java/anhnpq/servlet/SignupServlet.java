@@ -10,6 +10,7 @@ import anhnpq.dao.TblRole;
 import anhnpq.dao.TblUserDAO;
 import anhnpq.util.EncryptedPass;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,9 +46,9 @@ public class SignupServlet extends HttpServlet{
                 url = LOGIN_PAGE;
             }
             
-        }catch(Exception ex){           
+        }catch(NoSuchAlgorithmException ex){           
             req.setAttribute("ERRORMSG", "Account has already existed, click Back and Sign in.");
-             ex.printStackTrace();
+            log(ex.getMessage());
         }
         finally{
             RequestDispatcher rd = req.getRequestDispatcher(url);
