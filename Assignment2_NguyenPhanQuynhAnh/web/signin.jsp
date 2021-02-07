@@ -58,6 +58,12 @@
             a:hover{
                 color: tomato;
             }
+            @media (max-width: 1500px){
+                a{
+                    margin-left: -18%;
+                    font-size: 100%;
+                }
+            }
         </style>
     </head>
     <body  style="font-size: 200%">       

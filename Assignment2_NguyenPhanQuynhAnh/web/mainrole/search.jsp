@@ -84,7 +84,7 @@
                 WELLCOME, ${admin.urUserName}<br>
                 <a href="signout"><i class="fas fa-sign-out-alt fa-1x">Signout</i></a>
             </c:if><br>
-            <a href="${searchValues}"><i class="fas fa-plus-circle"></i>More questions</a>
+            <a href="createpage"><i class="fas fa-plus-circle"></i>More questions</a>
         </div>
         <!----------------------------------------------------------------------------------------------------------------->              
 
@@ -146,7 +146,7 @@
                                     <c:param name="subjectID" value="${param.subjectID}"/>
                                     <c:param name="txtSearch" value="${param.txtSearch}"/>
                                 </c:url>
-                                <a href="${urlRewriting}" class="delete" onclick="">Delete</a>
+                                <a href="${urlRewriting}" class="delete" onclick="showConfirmMsg()" id="deleteValue">Delete</a>
                             </c:if>    
                         </p>    
                     </c:forEach>
@@ -163,7 +163,16 @@
             elementsPerPage: 20,
             effect: "climb"
         });
-
+        function showConfirmMsg(){
+            var confirmmessage = "Are you sure to continue ?";
+            var message = document.getElementById('deleteValue').innerHTML + " will be delete";
+            
+            if(confirm(confirmmessage)){
+                alert(message);
+                return true;
+            }else{
+                return false;
+            }
     </script>
 </body>
 </html>

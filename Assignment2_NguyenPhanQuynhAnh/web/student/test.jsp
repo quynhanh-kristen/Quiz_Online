@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Quiz Online</title>
         <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script type="text/javascript" src="js/date.js"></script>
         <script src="https://kit.fontawesome.com/d2a5d5d384.js" crossorigin="anonymous"></script>
