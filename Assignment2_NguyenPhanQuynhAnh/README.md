@@ -6,4 +6,5 @@ A small web application let student doing quiz and admin can modify or create qu
 * JSP, HTML, CSS, JavaScript
 * JQuery to validate input data
 * SQL Server
+* Model: MVC 2
 ##### © 2021 quynhanh-kristen
